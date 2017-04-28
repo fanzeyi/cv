@@ -1,0 +1,280 @@
+%% cv.tex
+%% Copyright 2017 Zeyi Fan
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Zeyi Fan.
+%
+% This work consists of only the file cv.tex
+
+\documentclass{article}
+\usepackage[top=.4in, bottom=.0in, left=3in, right=0.4in,marginparwidth=2.5in]{geometry}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{fontspec}
+\usepackage{titlesec}
+\usepackage{pstricks}
+\usepackage{amssymb}
+\usepackage{paralist}
+
+%\usepackage[pdfauthor={Zeyi Fan},
+            %pdftitle={Zeyi Fan's Resume},
+            %pdfkeywords={}]{hyperref}
+\usepackage{hyperref}
+
+\definecolor{mygray}{gray}{0.95}
+\definecolor{lightdark}{gray}{0.55}
+\definecolor{dark}{gray}{0.3}
+\definecolor{skillbg}{gray}{0.7}
+
+\newcommand{\amount}{5.7in}
+\setcounter{section}{-1}
+
+\linespread{1.2}
+\pagenumbering{gobble}
+
+\renewcommand{\labelitemi}{$\blacksquare$}
+\renewenvironment{itemize}[1]{\begin{compactitem}#1}{\end{compactitem}}
+
+% Helpers
+
+\newcommand\twodigits[1]{%
+   \ifnum#1<10 0#1\else #1\fi
+}
+
+%\newcommand\hl[1]{{\ralewaysb #1}}
+\newcommand\hl[1]{#1}
+
+
+% Fonts
+
+\newfontfamily\raleway{Raleway}
+\newfontfamily\ralewaym{Raleway Medium}
+\newfontfamily\ralewaysb{Raleway SemiBold}
+\newfontfamily\ralewayb{Raleway Bold}
+\newfontfamily\ralewayeb{Raleway ExtraBold}
+\newfontfamily\ralewaybb{Raleway Black}
+
+\setmainfont{Raleway}
+
+
+% Styles
+\newcommand{\name}[2]{
+    \begin{center}
+        \Huge{
+            \ralewayeb{#1 #2}
+        }
+    \end{center}
+}
+
+\newcommand{\tagline}[1]{
+    \begin{center}
+        \large{
+            \color{dark}
+            \ralewaysb{#1}
+        }
+        \vspace{.2em}
+    \end{center}
+}
+
+\renewcommand{\thesection}{\twodigits{\arabic{section}}.}
+
+\titleformat{\section}
+[hang]
+{\ralewaysb\large\color{dark}}
+{}
+{.0em}
+{}
+[{\titlerule[0.8pt]}]
+
+\titlespacing*{\section}{0pt}{4pt}{10pt}
+
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+\setlength{\parindent}{0mm}
+
+\newcommand{\contactline}[2]{
+    \ralewaysb{#1} & \raleway{#2}
+}
+
+\newcommand{\skill}[2]{
+    \vspace{.2em}
+    \ralewayb{#1}
+
+    \psset{xunit=0.197\linewidth, yunit=5pt}
+    \begin{pspicture}[showgrid=false](5,1)
+        \psline[linecolor=skillbg](0,0.5)(5,0.5)
+        \psline[linecolor=skillbg,arrows=|-|](1,0.5)(2,0.5)
+        \psline[linecolor=skillbg,arrows=|-|](3,0.5)(4,0.5)
+        \psline[linecolor=skillbg,arrows=-|](0,0.5)(5,0.5)
+
+        \psline[linecolor=black,arrows=|-|](0,0.5)(#2,0.5)
+    \end{pspicture}
+}
+
+\newcommand{\block}[3]{
+    {\large\ralewayb #1}
+
+    \ralewaym{\color{lightdark}#2}
+
+    \raleway{#3}
+}
+
+\begin{document}
+
+% background
+
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[mygray] (current page.south west) rectangle ([xshift=-\amount]current page.north east);
+\end{tikzpicture}
+
+% Side Bar
+
+\begin{textblock}{58.5}(6,7.7)
+    \name{Zeyi}{Fan}
+
+    %\tagline{Student \& Developer}
+
+    \section{About me}
+
+    \color{dark}
+
+    Zeyi is a college student at San Jos\'{e} State University majoring in computer science. He is a passionate and self-taught programmer with experience in both front-end and back-end development. He is always thrilled to learn new technologies and use them into work.
+
+    \section{Contacts}
+
+    \renewcommand{\arraystretch}{1.1}
+
+    \begin{tabular}{rl}
+        \contactline{Phone}{(408) 618-9708} \\
+        \contactline{Email}{i@zr.is} \\
+        \contactline{Website}{\href{https://zr.is}{zr.is}} \\
+        \contactline{GitHub}{\href{https://github.com/fanzeyi}{@fanzeyi}} \\
+        \contactline{LinkedIn}{\href{https://linkedin.com/in/fanzeyi}{/in/fanzeyi}}
+    \end{tabular}
+
+    \section{Skills}
+
+    \skill{Python}{4.5}
+
+    \skill{JavaScript}{4}
+
+    \skill{Java}{4}
+
+    \skill{Go}{4}
+
+    \skill{C/C++}{4}
+
+    \skill{Git}{4}
+
+    \skill{\TeX}{4}
+
+    \skill{Scala}{4}
+
+    \skill{Linux}{3}
+
+    \skill{Nginx}{3}
+
+    \skill{VimL}{3}
+
+    \skill{PHP}{3}
+
+    \skill{Ruby}{2.5}
+
+    \skill{Haskell}{2}
+
+\end{textblock}
+
+% Main
+
+\vspace{-25pt}  % Change this value to adjust the position of the right
+\section{Education}
+
+\block{San Jos\'{e} State University}
+{B.S. Computer Science | GPA: 3.7 | Major GPA: 3.9 | Excepted May 2018}
+{
+    Relevant Coursework: Computer Architecture; Object-Oriented Design; Operating Systems; Programming Concepts and Paradigms.
+}
+
+\section{Work Experience}
+
+\block{Front-end Engineer}
+{Beary Innovation | Shenzhen, China (remote) | April 2014 - July 2014}
+{
+    \begin{itemize}[-]
+        \item Joined Beary Innovation as their first employee.
+        \item Responsible for the entire front-end development.
+        \item Built their front-end skeleton with \hl{AngularJS and CoffeeScript}
+    \end{itemize}
+}
+
+\vspace{.5em}
+
+\block{Back-end Engineering Intern}
+{Douban | Beijing, China | April 2013 - August 2013}
+{
+
+\begin{itemize}[-]
+    \item Douban is an interest-based online community founded in 2003. It is the 10th largest website in China and it was invested by Sequoia Capital.
+    \item Joined Douban as their youngest intern (during high school year).
+    \item Responsible for developing an internal source code management system.
+    \item Designed, and developed a REST service to \hl{encapsulate low-level git operations} with \hl{Python, Flask, and libgit2/pygit2.}
+    \item Greatly sped up the performance of their source code managment system relying on git operations.
+\end{itemize}
+}
+
+\section{Projects}
+
+\block{Torchic}{}{
+    \begin{itemize}[-]
+        \item The project is built for Google's CodeU program.
+        \item Designed and built a \hl{high-performance crawler in Go} with the ability to \hl{scale and disaster recovery}. It can crawl 400 pages per minute with single process.
+        \item Used Redis as index database and MySQL as document database.
+        \item \hl{Implemented BM25 as ranking algorithm.}
+        \item Designed a responsive web page to serve search request for both mobile and desktop.
+        \item The project is awarded Engineers' Choice judged by Googlers.
+    \end{itemize}
+}
+
+\vspace{.5em}
+
+\block{Kaname}{}{
+    \begin{itemize}[-]
+        \item Kaname is a desktop client for DoubanFM providing music streaming service.
+        \item Built this project to explore Chrome's packaged appication API.
+        \item Gained more than 10,000 users and an average 4.5 rating on Chrome Web Store.
+        \item Built with \hl{CoffeeScript and UnderscoreJS.}
+    \end{itemize}
+}
+
+\vspace{.5em}
+
+\block{Vulpix}{}{
+    \begin{itemize}[-]
+        \item Vulpix is an online algorithm practicing system.
+        \item Accpets C, C++ and Pascal program and the program will compile and run in a sandbox environment.
+        \item Can effectively give feedbacks on time and memory performance of submitted program.
+        \item Built with Python and Tornado as web framework.
+    \end{itemize}
+}
+
+\section{Awards}
+
+\ralewaysb Engineers' Choice \raleway at CodeU, Google\hfill Aug 2016
+
+\ralewaysb 2nd Prize \raleway at Happy Day Hackathon, Douban\hfill July 2013
+
+\ralewaysb The Most Popular and Creative Prize \raleway at Green Life Hackathon, Baidu\hfill July 2013
+
+\ralewaysb National 2nd Prize \raleway at National Olympiad Informatics in Provinces, CCF\hfill Dec 2012
+
+\end{document}
